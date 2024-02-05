@@ -1,18 +1,27 @@
 import { View, Text, ImageSourcePropType, Image, StyleSheet } from 'react-native'
 import React, { PropsWithChildren } from 'react'
+import Icon from 'react-native-vector-icons/FontAwesome'
 
 
 type TicToePros = PropsWithChildren<{
-    gridId : number
-    gridImage : ImageSourcePropType
+    name : String
 }>
 
-const TicTacCardView = (props : TicToePros) => {
-  return (
-    <View style = {styles.container}>
-        <Image source={props.gridImage} style = {styles.imageContainer} />
-    </View>
-  )
+const TicTacCardView = ({name} : TicToePros) => {
+    switch (name) {
+        case 'circle':
+                return  <View style = {styles.container}>
+                            <Icon name='circle-thin' size={38} color='#B83227' />
+                        </View>
+        case 'cross':
+                return  <View style = {styles.container}>
+                            <Icon name='times' size={38} color='#0A79DF' />
+                        </View>
+        default : 
+                return <View style = {styles.container}>
+                            <Icon name='pencil' size={38} color='#586776' /> 
+                      </View>    
+    }
 }
 
 const styles = StyleSheet.create({
@@ -25,10 +34,6 @@ const styles = StyleSheet.create({
         backgroundColor : '#FFFFFF',
         borderRadius : 6,
         margin : 10
-    },
-    imageContainer : {
-        height : 30,
-        width : 30
     }
   });
 
